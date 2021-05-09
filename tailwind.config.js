@@ -1,5 +1,4 @@
 module.exports = {
-	mode: "jit",
 	purge: ["./pages/*.tsx"],
 	darkMode: false,
 	theme: {
@@ -22,14 +21,6 @@ module.exports = {
 				200: "#c8cacc",
 				100: "#f9fcff",
 			},
-		},
-		fontFamily: {
-			sans: ["Work Sans", "Helvetica Neue", "sans-serif"],
-		},
-		fontWeight: {
-			light: 300,
-			normal: 500,
-			bold: 600,
 		},
 	},
 	variants: {

@@ -21,7 +21,7 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head />
-				<body tw="bg-gray-100 text-gray-700 antialiased">
+				<body tw="bg-gray-100 text-gray-700 font-sans antialiased">
 					<Main />
 					<NextScript />
 				</body>

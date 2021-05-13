@@ -1,10 +1,12 @@
+# Yarn
 node_modules/
 node_modules/**
-
 *.log
 
+# Next
 .next/
 .next/**
 out/
 
+# Ulysses
 *.plist

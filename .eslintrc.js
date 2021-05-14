@@ -22,14 +22,6 @@ module.exports = {
 	rules: {
 		// Next.JS automagically imports React
 		// for us when needed
-		"react/react-in-jsx-scope": [0],
-		// Got a helper function that checks for
-		// keys so this is /probably/ safe
-		"@typescript-eslint/ban-types": {
-			types: {
-				object: false,
-			},
-			extendDefaults: true,
-		},
+		"react/react-in-jsx-scope": false
 	},
 };

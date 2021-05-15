@@ -42,6 +42,28 @@ There’s an image. Isn’t it neat? I won’t finish the reference to *The Litt
 > 
 > _Adam Wathan_
 
+## Advanced Typography
+
+Like all great JavaScript developers, I use `console.log()` as my primary debugging tool. I also use one tab (four spaces) for indentation:
+
+```js
+import tw, { styled } from "twin.macro";
+
+const Prose = styled.article({
+	...tw`p-4 bg-gray-100 text-gray-700`,
+	h1: tw`mb-4 font-extrabold text-4xl`,
+	h2: tw`mb-4 font-bold text-2xl`,
+	h3: tw`mb-4 font-bold text-xl`,
+	p: tw`mb-4`,
+	a: tw`font-bold text-blue-700 border-blue-700 border-b-2 focus:border-b-4 hover:border-b-4 active:border-b-4 motion-safe:transition-all`
+	// remainder of code snipped to save space
+});
+
+export default Prose;
+```
+
+Incidentally, that’s a snippet of the actual code used to create the `Prose` component that I just created. I don’t know why the triple dots were required before the first use of `tw`, but that’s how it was done in all the `twin.macro` examples so I just went with it. That’s the beauty of being a JavaScript developer in 2021; you don’t need to know what you’re doing, you just copy-and-paste and you’re good. It’s the same reason why things like `create-react-app` and `create-next-app` are popular: you don’t need to understand how to configure `babel` or worse, `webpack`; these tools do it for you.
+
 [1]:	https://www.apple.com "Apple"
 
 [image-1]:	../public/snowy-window.png

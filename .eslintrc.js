@@ -22,6 +22,6 @@ module.exports = {
 	rules: {
 		// Next.JS automagically imports React
 		// for us when needed
-		"react/react-in-jsx-scope": false
+		"react/react-in-jsx-scope": [0]
 	},
 };

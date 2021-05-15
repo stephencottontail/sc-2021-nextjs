@@ -1,4 +1,4 @@
-import React from "react";
+import { createElement, Fragment } from "react";
 
 import fs from "fs";
 import { join } from "path";
@@ -7,10 +7,12 @@ import { GetStaticProps } from "next";
 import remark from "remark";
 import frontmatter from "remark-frontmatter";
 import extract from "remark-extract-frontmatter";
+import yaml from "yaml";
 import toRehype from "remark-rehype";
 import toReact from "rehype-react";
 import sanitize from "rehype-sanitize";
-import yaml from "yaml";
+
+import Prose from "../components/Prose";
 
 const hasKeys = <T, K extends PropertyKey>(
 	obj: T,
@@ -28,13 +30,16 @@ const HomePage = (props: Record<string, string[]>): JSX.Element => {
 	const { els } = props;
 
 	return (
-		<div>
-			{JSON.parse(els[0], (k, v) => {
-				const matches = v && v.match && v.match(/^\$\$Symbol:(.*)$/);
+		<Fragment>
+			<Prose>
+				{JSON.parse(els[0], (k, v) => {
+					const matches =
+						v && v.match && v.match(/^\$\$Symbol:(.*)$/);
 
-				return matches ? Symbol.for(matches[1]) : v;
-			})}
-		</div>
+					return matches ? Symbol.for(matches[1]) : v;
+				})}
+			</Prose>
+		</Fragment>
 	);
 };
 
@@ -48,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		.use(frontmatter, [{ type: "yaml", anywhere: true, marker: "-" }])
 		.use(extract, { yaml: yaml.parse })
 		.use(toRehype)
-		.use(toReact, { createElement: React.createElement })
+		.use(toReact, { createElement, Fragment })
 		.use(sanitize)
 		.process(contents);
 

@@ -14,16 +14,22 @@ import sanitize from "rehype-sanitize";
 
 import Prose from "../components/Prose";
 
-const hasKeys = <T, K extends PropertyKey>(
-	obj: T,
-	keys: K | K[]
-): obj is T & { [P in K]: unknown } => {
-	return (
-		null != obj &&
-		(Array.isArray(keys)
-			? keys.every((k) => k in Object(obj))
-			: keys in Object(obj))
-	);
+interface Frontmatter {
+	title: "string";
+	date: "string";
+	slug: "string";
+	category: "string";
+}
+
+const hasOwnProperty = <X extends object, Y extends PropertyKey>(
+	obj: X,
+	keys: Y | Y[]
+): obj is X & Record<Y, unknown> => {
+	return Array.isArray(keys) ? keys.every((k) => k in obj) : keys in obj;
+};
+
+const isFrontmatter = (obj: object): obj is Frontmatter => {
+	return hasOwnProperty(obj, ["title", "date", "slug", "category"]);
 };
 
 const HomePage = (props: Record<string, string[]>): JSX.Element => {
@@ -60,9 +66,9 @@ export const getStaticProps: GetStaticProps = async () => {
 	if (
 		typeof results.result === "object" &&
 		typeof results.data === "object" &&
-		hasKeys(results.data, "category")
+		isFrontmatter(results.data)
 	) {
-		cats.push(results.data.category as string);
+		cats.push(results.data.category);
 		els.push(
 			JSON.stringify(results.result, (k, v) =>
 				typeof v === "symbol" ? `$$Symbol:${Symbol.keyFor(v)}` : v

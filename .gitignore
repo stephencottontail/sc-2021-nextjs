@@ -6,3 +6,5 @@ node_modules/**
 .next/
 .next/**
 out/
+
+*.plist

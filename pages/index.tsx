@@ -36,16 +36,13 @@ const HomePage = (props: Record<string, string[]>): JSX.Element => {
 	const { els } = props;
 
 	return (
-		<Fragment>
-			<Prose>
-				{JSON.parse(els[0], (k, v) => {
-					const matches =
-						v && v.match && v.match(/^\$\$Symbol:(.*)$/);
+		<Prose>
+			{JSON.parse(els[0], (k, v) => {
+				const matches = v && v.match && v.match(/^\$\$Symbol:(.*)$/);
 
-					return matches ? Symbol.for(matches[1]) : v;
-				})}
-			</Prose>
-		</Fragment>
+				return matches ? Symbol.for(matches[1]) : v;
+			})}
+		</Prose>
 	);
 };
 

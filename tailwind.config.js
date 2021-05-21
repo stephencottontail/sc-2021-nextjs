@@ -22,6 +22,19 @@ module.exports = {
 				100: "#f9fcff",
 			},
 		},
+		spacing: {
+			none: "0rem",
+			smaller: "0.75rem",
+			normal: "1.5rem",
+			larger: "3rem",
+		},
+		fontSize: {
+			small: ["0.8rem", "1.5rem"],
+			base: ["1rem", "1.5rem"],
+			xl: ["1.5rem", "1.5rem"],
+			"2xl": ["2rem", "3rem"],
+			"4xl": ["4rem", "4.5rem"],
+		},
 	},
 	variants: {
 		extend: {},

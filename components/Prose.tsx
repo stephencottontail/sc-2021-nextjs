@@ -1,45 +1,47 @@
 import tw, { styled } from "twin.macro";
 
 const Prose = styled.article({
-	...tw`p-4 bg-gray-100 text-gray-700`,
-	h1: tw`mb-4 font-extrabold text-4xl`,
-	h2: tw`mb-4 font-bold text-2xl`,
-	h3: tw`mb-4 font-bold text-xl`,
-	p: tw`mb-4`,
+	...tw`p-normal bg-gray-100 text-gray-700`,
+	backgroundImage: "linear-gradient(green 1px, transparent 1px)",
+	backgroundSize: "1px 1.5rem",
+	h1: tw`mb-normal font-extrabold text-4xl`,
+	h2: tw`mb-normal font-bold text-2xl`,
+	h3: tw`mb-normal font-bold text-xl`,
+	p: tw`mb-normal`,
 	a: tw`font-bold text-blue-700 border-blue-700 border-b-2 focus:border-b-4 hover:border-b-4 active:border-b-4 motion-safe:transition-all`,
 	ul: {
-		...tw`mb-4 pl-4 list-disc list-inside`,
+		...tw`mb-normal pl-normal list-disc list-inside`,
 		ul: {
-			...tw`m-0`,
+			...tw`m-none`,
 		},
 		ol: {
-			...tw`m-0`,
+			...tw`m-none`,
 		},
 	},
 	ol: {
-		...tw`mb-4 pl-4 list-decimal list-inside`,
+		...tw`mb-normal pl-normal list-decimal list-inside`,
 		ul: {
-			...tw`m-0`,
+			...tw`m-none`,
 		},
 		ol: {
-			...tw`m-0`,
+			...tw`m-none`,
 		},
 	},
 	code: {
 		...tw`bg-gray-700 text-gray-100`,
-		padding: "4px",
+		padding: "2px",
 		borderRadius: "4px",
 	},
 	blockquote: {
-		...tw`space-y-4 mb-4 p-4 bg-blue-100`,
+		...tw`space-y-normal mb-normal p-normal bg-blue-100`,
 		p: {
-			...tw`m-0`,
+			...tw`m-none`,
 		},
 	},
 	pre: {
-		...tw`mb-4 p-4 overflow-x-scroll`,
+		...tw`mb-normal p-normal overflow-x-scroll`,
 		code: {
-			...tw`p-0 bg-gray-100 text-gray-700`,
+			...tw`p-none bg-gray-100 text-gray-700`,
 		},
 	},
 });

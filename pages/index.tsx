@@ -1,4 +1,6 @@
-import { createElement, Fragment } from "react";
+import { Fragment } from "react";
+
+import "twin.macro";
 
 import fs from "fs";
 import { join } from "path";
@@ -8,13 +10,10 @@ import remark from "remark";
 import frontmatter from "remark-frontmatter";
 import extract from "remark-extract-frontmatter";
 import yaml from "yaml";
-import toRehype from "remark-rehype";
-import toReact from "rehype-react";
-import sanitize from "rehype-sanitize";
 
-import Prose from "../components/Prose";
+import Link from "next/link";
 
-interface Frontmatter {
+interface Meta {
 	title: "string";
 	date: "string";
 	slug: "string";
@@ -28,53 +27,47 @@ const hasOwnProperty = <X extends object, Y extends PropertyKey>(
 	return Array.isArray(keys) ? keys.every((k) => k in obj) : keys in obj;
 };
 
-const isFrontmatter = (obj: object): obj is Frontmatter => {
+const isMeta = (obj: object): obj is Meta => {
 	return hasOwnProperty(obj, ["title", "date", "slug", "category"]);
 };
 
-const HomePage = (props: Record<string, string[]>): JSX.Element => {
-	const { els } = props;
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const HomePage = (props: Record<string, string[]>) => {
+	const { cats } = props;
 
 	return (
-		<Prose>
-			{JSON.parse(els[0], (k, v) => {
-				const matches = v && v.match && v.match(/^\$\$Symbol:(.*)$/);
-
-				return matches ? Symbol.for(matches[1]) : v;
-			})}
-		</Prose>
+		<Fragment>
+			<div tw="grid grid-cols-3 gap-normal bg-gray-100 text-gray-700">
+				{cats.map((cat, i) => (
+					<p key={i} tw="bg-gray-200 p-normal text-center">
+						<Link href={`/${cat}`}>{cat}</Link>
+					</p>
+				))}
+			</div>
+		</Fragment>
 	);
 };
 
 export const getStaticProps: GetStaticProps = async () => {
 	const cats: string[] = [];
-	const els: string[] = [];
+	const path = join(process.cwd(), "posts");
+	const posts = fs.readdirSync(path).filter((file) => {
+		return file.includes(".md");
+	});
 
-	const path = join(process.cwd(), "posts", "Typography.md");
-	const contents = fs.readFileSync(path);
-	const results = await remark()
-		.use(frontmatter, [{ type: "yaml", anywhere: true, marker: "-" }])
-		.use(extract, { yaml: yaml.parse })
-		.use(toRehype)
-		.use(toReact, { createElement, Fragment })
-		.use(sanitize)
-		.process(contents);
+	posts.forEach(async (post) => {
+		const results = await remark()
+			.use(frontmatter, [{ type: "yaml", anywhere: true, marker: "-" }])
+			.use(extract, { yaml: yaml.parse })
+			.process(fs.readFileSync(join(path, post)));
 
-	if (
-		typeof results.result === "object" &&
-		typeof results.data === "object" &&
-		isFrontmatter(results.data)
-	) {
-		cats.push(results.data.category);
-		els.push(
-			JSON.stringify(results.result, (k, v) =>
-				typeof v === "symbol" ? `$$Symbol:${Symbol.keyFor(v)}` : v
-			)
-		);
-	}
+		if (typeof results.data === "object" && isMeta(results.data)) {
+			cats.push(results.data.category);
+		}
+	});
 
 	return {
-		props: { cats, els },
+		props: { cats },
 	};
 };
 

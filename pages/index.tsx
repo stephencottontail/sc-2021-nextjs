@@ -4,6 +4,8 @@ import fs from "fs";
 import { join } from "path";
 import { GetStaticProps } from "next";
 
+import tw, { css } from "twin.macro";
+
 import remark from "remark";
 import frontmatter from "remark-frontmatter";
 import extract from "remark-extract-frontmatter";
@@ -36,13 +38,39 @@ const HomePage = (props: Record<string, string[]>): JSX.Element => {
 	const { els } = props;
 
 	return (
-		<Prose>
-			{JSON.parse(els[0], (k, v) => {
-				const matches = v && v.match && v.match(/^\$\$Symbol:(.*)$/);
+		<Fragment>
+			<div
+				css={{
+					...tw`grid grid-cols-7`,
+					"> div": {
+						height: "150px",
+					},
+				}}
+			>
+				<div tw="bg-blue-100"></div>
+				<div tw="bg-blue-200"></div>
+				<div tw="bg-blue-300"></div>
+				<div tw="bg-blue-400"></div>
+				<div tw="bg-blue-500"></div>
+				<div tw="bg-blue-600"></div>
+				<div tw="bg-blue-700"></div>
+				<div tw="bg-gray-100"></div>
+				<div tw="bg-gray-200"></div>
+				<div tw="bg-gray-300"></div>
+				<div tw="bg-gray-400"></div>
+				<div tw="bg-gray-500"></div>
+				<div tw="bg-gray-600"></div>
+				<div tw="bg-gray-700"></div>
+			</div>
+			<Prose>
+				{JSON.parse(els[0], (k, v) => {
+					const matches =
+						v && v.match && v.match(/^\$\$Symbol:(.*)$/);
 
-				return matches ? Symbol.for(matches[1]) : v;
-			})}
-		</Prose>
+					return matches ? Symbol.for(matches[1]) : v;
+				})}
+			</Prose>
+		</Fragment>
 	);
 };
 

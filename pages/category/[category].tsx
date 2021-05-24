@@ -1,27 +1,34 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 
-const Category = (): JSX.Element | null => {
-	return <h1>Category!</h1>;
+const Category = (
+	props: Record<string, string>
+): JSX.Element | null => {
+	const { category } = props;
+
+	return <h1>{category.toUpperCase()}</h1>;
 };
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
 ) => {
-	console.log(context);
-
 	return {
 		props: {
-			cat: "hi",
+			category: context.params.category,
 		},
 	};
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	// boring code to fetch all categories
-	const cats = ["nextjs", "testing", "foo"];
+	const paths = ["nextjs", "testing", "foo"].map((path) => {
+		return {
+			params: {
+				category: path,
+			},
+		};
+	});
 
 	return {
-		paths: [{ params: { cat: cats } }],
+		paths: paths,
 		fallback: false,
 	};
 };

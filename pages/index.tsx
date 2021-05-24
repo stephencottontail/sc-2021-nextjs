@@ -40,7 +40,7 @@ const HomePage = (props: Record<string, string[]>) => {
 			<div tw="grid grid-cols-3 gap-normal bg-gray-100 text-gray-700">
 				{cats.map((cat, i) => (
 					<p key={i} tw="bg-gray-200 p-normal text-center">
-						<Link href={`/${cat}`}>{cat}</Link>
+						<Link href={`/category/${cat}`}>{cat}</Link>
 					</p>
 				))}
 			</div>

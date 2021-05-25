@@ -1,8 +1,6 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 
-const Category = (
-	props: Record<string, string>
-): JSX.Element | null => {
+const Category = (props: Record<string, string>): JSX.Element | null => {
 	const { category } = props;
 
 	return <h1>{category.toUpperCase()}</h1>;
@@ -19,16 +17,13 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const paths = ["nextjs", "testing", "foo"].map((path) => {
-		return {
-			params: {
-				category: path,
-			},
-		};
-	});
+	// code that fetches the categories
 
 	return {
-		paths: paths,
+		paths: [
+			{ params: { category: "foo" } },
+			{ params: { category: "bar" } },
+		],
 		fallback: false,
 	};
 };

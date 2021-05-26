@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { fetchCategories } from "../../utils/utils";
 
 const Category = (props: Record<string, string>): JSX.Element | null => {
 	const { category } = props;
@@ -17,13 +18,13 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	// code that fetches the categories
+	const cats = await fetchCategories();
+	const paths = cats.map((cat) => {
+		return { params: { category: cat } };
+	});
 
 	return {
-		paths: [
-			{ params: { category: "foo" } },
-			{ params: { category: "bar" } },
-		],
+		paths: paths,
 		fallback: false,
 	};
 };

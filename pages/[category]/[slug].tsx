@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { matchSlugsWithCategories } from "../../utils/utils";
 
 const Slug = (props: Record<string, string>): JSX.Element | null => {
 	const { slug } = props;
@@ -17,14 +18,20 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	// code that fetches slugs and matches
-	// with the appropriate category
+	const meta = await matchSlugsWithCategories();
+	const params: Array<{ params: { [key: string]: string } }> = [];
+
+	meta.forEach((meta) => {
+		params.push({
+			params: {
+				category: meta.category,
+				slug: meta.slug,
+			},
+		});
+	});
 
 	return {
-		paths: [
-			{ params: { category: "foo", slug: "bar" } },
-			{ params: { category: "baz", slug: "qux" } },
-		],
+		paths: params,
 		fallback: false,
 	};
 };

@@ -1,18 +1,32 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import { fetchCategories } from "../../utils/utils";
+import { fetchCategories, getPostsByCategory } from "../../utils/utils";
+import { Meta } from "../../utils/meta";
+import { Fragment } from "react";
 
-const Category = (props: Record<string, string>): JSX.Element | null => {
-	const { category } = props;
+const Category = (props: {
+	category: string;
+	posts: Array<Meta>;
+}): JSX.Element | null => {
+	const { posts, category } = props;
 
-	return <h1>{category.toUpperCase()}</h1>;
+	return (
+		<Fragment>
+			<h1>{category.toUpperCase()}</h1>
+			{posts && posts.map((post) => <p key={post.date}>{post.slug}</p>)}
+		</Fragment>
+	);
 };
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
 ) => {
+	const { category } = context.params;
+	const posts = await getPostsByCategory(category as string);
+
 	return {
 		props: {
 			category: context.params.category,
+			posts,
 		},
 	};
 };

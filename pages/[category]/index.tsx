@@ -1,7 +1,9 @@
+import { Fragment } from "react";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchCategories, getPostsByCategory } from "../../utils/utils";
 import { Meta } from "../../utils/meta";
-import { Fragment } from "react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Category = (props: {
 	category: string;
@@ -11,8 +13,10 @@ const Category = (props: {
 
 	return (
 		<Fragment>
+			<Header />
 			<h1>{category.toUpperCase()}</h1>
 			{posts && posts.map((post) => <p key={post.date}>{post.slug}</p>)}
+			<Footer />
 		</Fragment>
 	);
 };

@@ -5,12 +5,16 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { fetchCategories } from "../utils/utils";
 
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const HomePage = (props: Record<string, string[]>) => {
 	const { cats } = props;
 
 	return (
 		<Fragment>
+			<Hero />
 			<div
 				css={{
 					...tw`grid grid-cols-7`,
@@ -41,6 +45,7 @@ const HomePage = (props: Record<string, string[]>) => {
 					</p>
 				))}
 			</div>
+			<Footer />
 		</Fragment>
 	);
 };

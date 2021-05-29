@@ -3,6 +3,8 @@ import { join } from "path";
 
 import { Fragment } from "react";
 import Prose from "../../components/Prose";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { matchSlugsWithCategories } from "../../utils/utils";
@@ -13,8 +15,10 @@ const Slug = (props: Record<string, string>) => {
 
 	return (
 		<Fragment>
+			<Header />
 			<h1>{slug.toUpperCase()}</h1>
 			<Prose markdown={markdown} />
+			<Footer />
 		</Fragment>
 	);
 };

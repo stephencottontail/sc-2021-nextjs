@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
 	const { slug } = context.params;
 	const markdown = fs.readFileSync(
-		join(process.cwd(), "posts", slug + ".md")
+		join(process.cwd(), "public", slug + ".md")
 	);
 
 	return {

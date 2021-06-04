@@ -6,7 +6,14 @@ const Prose = styled.article({
 	h2: tw`mb-normal font-bold text-2xl`,
 	h3: tw`mb-normal font-bold text-xl`,
 	p: tw`mb-normal`,
-	a: tw`font-bold text-blue-700 border-blue-700 border-b-2 focus:border-b-4 hover:border-b-4 active:border-b-4 motion-safe:transition-all`,
+	a: {
+		...tw`font-bold text-blue-700 border-blue-700 border-b-2 focus:border-b-4 hover:border-b-4 active:border-b-4 motion-safe:transition-all`,
+		code: {
+			...tw`bg-gray-100 text-blue-700`,
+			padding: "0",
+			borderRadius: "0",
+		},
+	},
 	img: tw`mb-normal!`,
 	ul: {
 		...tw`mb-normal pl-normal list-disc list-inside`,

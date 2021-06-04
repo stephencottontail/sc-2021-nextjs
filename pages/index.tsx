@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import tw from "twin.macro";
+import tw, { styled } from "twin.macro";
 
 import { GetStaticProps } from "next";
 import Link from "next/link";
@@ -7,44 +7,38 @@ import { fetchCategories } from "../utils/utils";
 
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
+import { toHtml, toJsx } from "../utils/markdown";
+
+interface HomeProps {
+	cats: string[];
+	content: string;
+}
+
+const Intro = styled.div({
+	...tw`p-normal bg-gray-100 text-gray-700`,
+	a: tw`font-bold text-blue-700 border-blue-700 border-b-2 focus:border-b-4 hover:border-b-4 active:border-b-4 motion-safe:transition-all`,
+});
+
+const Garden = styled.div({
+	...tw`p-normal grid md:grid-cols-3 gap-normal bg-gray-100 text-gray-700`,
+	a: tw`p-normal bg-blue-100 text-blue-700 font-bold text-center hover:bg-blue-200 focus:bg-blue-200 active:bg-blue-200 motion-safe:transition-colors`,
+});
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const HomePage = (props: Record<string, string[]>) => {
-	const { cats } = props;
+const HomePage = (props: HomeProps) => {
+	const { cats, content } = props;
 
 	return (
 		<Fragment>
 			<Hero />
-			<div
-				css={{
-					...tw`grid grid-cols-7`,
-					"> div": {
-						height: "150px",
-					},
-				}}
-			>
-				<div tw="bg-blue-100"></div>
-				<div tw="bg-blue-200"></div>
-				<div tw="bg-blue-300"></div>
-				<div tw="bg-blue-400"></div>
-				<div tw="bg-blue-500"></div>
-				<div tw="bg-blue-600"></div>
-				<div tw="bg-blue-700"></div>
-				<div tw="bg-gray-100"></div>
-				<div tw="bg-gray-200"></div>
-				<div tw="bg-gray-300"></div>
-				<div tw="bg-gray-400"></div>
-				<div tw="bg-gray-500"></div>
-				<div tw="bg-gray-600"></div>
-				<div tw="bg-gray-700"></div>
-			</div>
-			<div tw="grid grid-cols-3 gap-normal bg-gray-100 text-gray-700">
+			<Intro>{toJsx(content)}</Intro>
+			<Garden>
 				{cats.map((cat, i) => (
-					<p key={i} tw="bg-gray-200 p-normal text-center">
-						<Link href={`/${cat}`}>{cat}</Link>
-					</p>
+					<Link href={`/${cat}`} key={i}>
+						<a>{cat}</a>
+					</Link>
 				))}
-			</div>
+			</Garden>
 			<Footer />
 		</Fragment>
 	);
@@ -54,7 +48,10 @@ export const getStaticProps: GetStaticProps = async () => {
 	const cats = await fetchCategories();
 
 	return {
-		props: { cats },
+		props: {
+			cats: cats,
+			content: toHtml("home"),
+		},
 	};
 };
 

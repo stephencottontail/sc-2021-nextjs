@@ -8,7 +8,7 @@ const Header = (): JSX.Element => {
 			<Wrap>
 				<Link href="/" passHref>
 					<a tw="font-bold text-2xl underline hover:no-underline focus:no-underline">
-						{"steve"}
+						{"stephen"}
 					</a>
 				</Link>
 			</Wrap>

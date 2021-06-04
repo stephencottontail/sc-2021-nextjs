@@ -50,7 +50,7 @@ const Footer = (): JSX.Element => (
 				</a>
 			</Link>
 			<Text>
-				<p>steve</p>
+				<p>stephen</p>
 				<Link href="https://twitter.com/s_cottontail24">Twitter</Link>
 				<Link href="https://github.com/stephencottontail">GitHub</Link>
 			</Text>

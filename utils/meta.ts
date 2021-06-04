@@ -27,7 +27,7 @@ export interface Meta {
 export const getMeta = async (): Promise<Array<Meta>> => {
 	const meta: Array<Meta> = [];
 
-	const path = join(process.cwd(), "posts");
+	const path = join(process.cwd(), "public");
 	const posts = fs.readdirSync(path).filter((file) => {
 		return file.includes(".md");
 	});

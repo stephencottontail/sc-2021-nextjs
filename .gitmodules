@@ -1,3 +1,3 @@
 [submodule "posts"]
-	path = posts
+	path = public
 	url = git@github.com:stephencottontail/nextjs-content.git

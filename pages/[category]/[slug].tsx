@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Prose from "../../components/Prose";
 import Footer from "../../components/Footer";
 import MyImage from "../../components/Image";
+import MyLink from "../../components/Link";
 
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { matchSlugsWithCategories } from "../../utils/utils";
@@ -34,6 +35,7 @@ const Slug = (props: Record<string, string>) => {
 			Fragment: Fragment,
 			components: {
 				img: MyImage,
+				a: MyLink,
 			},
 		})
 		.processSync(contents);

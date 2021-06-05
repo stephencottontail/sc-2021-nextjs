@@ -28,8 +28,8 @@ const Slug = (props: Record<string, string>) => {
 			<Header />
 			<main tw="max-w-4xl mx-auto p-normal bg-gray-100 text-gray-700">
 				<Prose>
-					<header tw="flex text-gray-500">
-						<p tw="mr-normal">{date}</p>
+					<header tw="flex flex-col md:flex-row text-gray-500">
+						<p tw="mb-normal md:mr-normal">{date}</p>
 						{updated && <p>{`Updated: ${updated}`}</p>}
 					</header>
 					{toJsx(contents)}

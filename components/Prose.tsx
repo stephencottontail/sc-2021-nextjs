@@ -1,7 +1,7 @@
 import tw, { styled } from "twin.macro";
 
 const Prose = styled.article({
-	h1: tw`mb-normal font-extrabold text-4xl`,
+	h1: tw`mb-normal font-extrabold text-2xl md:text-4xl`,
 	h2: tw`mb-normal font-bold text-2xl`,
 	h3: tw`mb-normal font-bold text-xl`,
 	p: tw`mb-normal`,

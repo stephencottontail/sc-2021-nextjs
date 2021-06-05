@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import Link from "next/link";
+import Head from "next/head";
 
 import "twin.macro";
 
@@ -14,9 +15,16 @@ const Category = (props: {
 	posts: Array<Meta>;
 }): JSX.Element | null => {
 	const { posts, category } = props;
+	const metaTitle = `${category} | Stephen`;
+	const metaUrl = `https://stephencottontail.com/${category}`;
 
 	return (
 		<Fragment>
+			<Head>
+				<title>{metaTitle}</title>
+				<meta property="og:title" content={metaTitle} key="title" />
+				<meta property="og:url" content={metaUrl} key="url" />
+			</Head>
 			<Header />
 			<main tw="max-w-4xl mx-auto p-normal bg-gray-100 text-gray-700">
 				{posts &&

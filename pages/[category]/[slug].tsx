@@ -17,13 +17,15 @@ const Slug = (props: Record<string, string>) => {
 	return (
 		<Fragment>
 			<Header />
-			<Prose>
-				<header tw="flex text-gray-500">
-					<p tw="mr-normal">{date}</p>
-					{updated && <p>{`Updated: ${updated}`}</p>}
-				</header>
-				{toJsx(contents)}
-			</Prose>
+			<main tw="max-w-4xl mx-auto p-normal bg-gray-100 text-gray-700">
+				<Prose>
+					<header tw="flex text-gray-500">
+						<p tw="mr-normal">{date}</p>
+						{updated && <p>{`Updated: ${updated}`}</p>}
+					</header>
+					{toJsx(contents)}
+				</Prose>
+			</main>
 			<Footer />
 		</Fragment>
 	);

@@ -18,7 +18,7 @@ const Category = (props: {
 	return (
 		<Fragment>
 			<Header />
-			<main tw="p-normal bg-gray-100 text-gray-700">
+			<main tw="max-w-4xl mx-auto p-normal bg-gray-100 text-gray-700">
 				{posts &&
 					posts.map((post) => (
 						<article tw="mb-normal" key={post.date}>

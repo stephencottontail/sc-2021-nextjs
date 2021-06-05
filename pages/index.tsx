@@ -31,14 +31,16 @@ const HomePage = (props: HomeProps) => {
 	return (
 		<Fragment>
 			<Hero />
-			<Intro>{toJsx(content)}</Intro>
-			<Garden>
-				{cats.map((cat, i) => (
-					<Link href={`/${cat}`} key={i}>
-						<a>{cat}</a>
-					</Link>
-				))}
-			</Garden>
+			<main tw="max-w-4xl mx-auto">
+				<Intro>{toJsx(content)}</Intro>
+				<Garden>
+					{cats.map((cat, i) => (
+						<Link href={`/${cat}`} key={i}>
+							<a>{cat}</a>
+						</Link>
+					))}
+				</Garden>
+			</main>
 			<Footer />
 		</Fragment>
 	);

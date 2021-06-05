@@ -1,5 +1,9 @@
 import { Fragment } from "react";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import Link from "next/link";
+
+import "twin.macro";
+
 import { fetchCategories, getPostsByCategory } from "../../utils/utils";
 import { Meta } from "../../utils/meta";
 import Header from "../../components/Header";
@@ -14,8 +18,32 @@ const Category = (props: {
 	return (
 		<Fragment>
 			<Header />
-			<h1>{category.toUpperCase()}</h1>
-			{posts && posts.map((post) => <p key={post.date}>{post.slug}</p>)}
+			<main tw="p-normal bg-gray-100 text-gray-700">
+				{posts &&
+					posts.map((post) => (
+						<article tw="mb-normal" key={post.date}>
+							<h2 tw="font-mono text-xl">
+								<Link
+									href={{
+										pathname: "/[category]/[slug]",
+										query: {
+											category: category,
+											slug: post.slug,
+										},
+									}}
+								>
+									<a tw="underline hover:no-underline focus:no-underline active:no-underline">{`/${category}/${post.slug}.md`}</a>
+								</Link>
+							</h2>
+							<header tw="flex text-gray-500">
+								<p tw="mr-normal">{post.date}</p>
+								{post.updated && (
+									<p>{`Updated: ${post.updated}`}</p>
+								)}
+							</header>
+						</article>
+					))}
+			</main>
 			<Footer />
 		</Fragment>
 	);

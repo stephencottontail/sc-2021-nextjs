@@ -20,6 +20,7 @@ const isMeta = (obj: object): obj is Meta => {
 export interface Meta {
 	title: "string";
 	date: "string";
+	updated?: "string";
 	slug: "string";
 	category: "string";
 }

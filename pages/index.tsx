@@ -21,6 +21,7 @@ const Intro = styled.div({
 
 const Garden = styled.div({
 	...tw`p-normal grid md:grid-cols-3 gap-normal bg-gray-100 text-gray-700`,
+	h2: tw`font-bold text-2xl text-center col-span-full`,
 	a: tw`p-normal bg-blue-100 text-blue-700 font-bold text-center hover:bg-blue-200 focus:bg-blue-200 active:bg-blue-200 motion-safe:transition-colors`,
 });
 
@@ -34,6 +35,7 @@ const HomePage = (props: HomeProps) => {
 			<main tw="max-w-4xl mx-auto">
 				<Intro>{toJsx(content)}</Intro>
 				<Garden>
+					<h2>Topics</h2>
 					{cats.map((cat, i) => (
 						<Link href={`/${cat}`} key={i}>
 							<a>{cat}</a>

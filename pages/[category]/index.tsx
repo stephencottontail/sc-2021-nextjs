@@ -43,10 +43,10 @@ const Category = (props: {
 									<a tw="underline hover:no-underline focus:no-underline active:no-underline">{`/${category}/${post.slug}.md`}</a>
 								</Link>
 							</h2>
-							<header tw="flex text-gray-500">
-								<p tw="mr-normal">{post.date}</p>
+							<header tw="flex flex-col md:flex-row text-gray-500">
+								<span tw="md:mr-normal">{post.date}</span>
 								{post.updated && (
-									<p>{`Updated: ${post.updated}`}</p>
+									<span>{`Updated: ${post.updated}`}</span>
 								)}
 							</header>
 						</article>

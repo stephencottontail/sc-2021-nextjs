@@ -29,8 +29,8 @@ const Slug = (props: Record<string, string>) => {
 			<main tw="max-w-4xl mx-auto p-normal bg-gray-100 text-gray-700">
 				<Prose>
 					<header tw="flex flex-col md:flex-row text-gray-500">
-						<p tw="mb-normal md:mr-normal">{date}</p>
-						{updated && <p>{`Updated: ${updated}`}</p>}
+						<span tw="md:mr-normal">{date}</span>
+						{updated && <span>{`Updated: ${updated}`}</span>}
 					</header>
 					{toJsx(contents)}
 				</Prose>

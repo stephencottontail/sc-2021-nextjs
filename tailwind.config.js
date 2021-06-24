@@ -32,7 +32,7 @@ module.exports = {
 			small: ["0.8rem", "1.5rem"],
 			base: ["1rem", "1.5rem"],
 			xl: ["1.5rem", "1.5rem"],
-			"2xl": ["2rem", "3rem"],
+			"2xl": ["2rem", "2.5rem"],
 			"4xl": ["4rem", "4.5rem"],
 		},
 	},

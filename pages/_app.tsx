@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { Fragment } from "react";
+import { Global, css } from "@emotion/react";
 import { GlobalStyles } from "twin.macro";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -32,6 +33,20 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 				<meta property="og:image:height" content="512" />
 				<meta property="og:image:width" content="512" />
 			</Head>
+			<Global
+				styles={css`
+					#__next {
+						display: flex;
+						flex-direction: column;
+						min-height: 100vh;
+						height: 100%;
+					}
+					#__next main {
+						flex: 1;
+						width: 100%;
+					}
+				`}
+			/>
 			<GlobalStyles />
 			<Component {...pageProps} />
 		</Fragment>

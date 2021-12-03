@@ -2,7 +2,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { Fragment } from "react";
 import { Global, css } from "@emotion/react";
-import { GlobalStyles } from "twin.macro";
+import tw, { GlobalStyles } from "twin.macro";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	return (
@@ -40,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 						flex-direction: column;
 						min-height: 100vh;
 						height: 100%;
+						${tw`bg-gray-100`}
 					}
 					#__next main {
 						flex: 1;
